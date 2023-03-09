@@ -1,8 +1,3 @@
-#Today Git 
-#second chenge
-#third chenge
-#forth change
-#fifth change
 import numpy as np
 import os
 import glob
@@ -38,8 +33,6 @@ print(file_name_Production[-1])
 
 # ``````````````Start New Autonomation solution data base ``````````
 
-# Set the folder path
-folder_path = "C:\\Users\\keshe\Documents\\MAS\\Excel sheet ganerator"
 # Get a list of all Excel files in the folder
 excel_files = glob.glob(os.path.join(folder_path, 'Autonomation solution data base *.xlsx'))
 # Extract the dates from the file names
