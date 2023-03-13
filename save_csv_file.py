@@ -24,9 +24,11 @@ max_date = max(dates)
 # change the Dates Dtype to str type
 max_date = max_date.strftime('%Y-%m-%d')
 
+Loding_date = (f'{max_date[5:7]}-{max_date[8:]}-{max_date[:4]}')
 file_name = os.path.join(folder_path, f'Vaanavil Production Plan {max_date[5:7]}-{max_date[8:]}-{max_date[:4]}.xlsx')
 file_name_Production = file_name.split ('\\')
 print(file_name_Production[-1])
+print('today ;- ', Loding_date)
 
 # ///////// END Find New Production Plan //////////////
 
@@ -107,17 +109,18 @@ st = time.time()
 sum_strip = pd.merge(sum_strip, Auto_SC[['Style', 'Solution Code']], on= 'Style', how='left')
 sum_strip = sum_strip.replace(np.nan, '', regex=True)
 
-today = td.date.today()
-week_number = str(today.isocalendar()[1])
-
+Loding_date = datetime.strptime(Loding_date, '%m-%d-%Y').date()
+week_number = str(Loding_date.isocalendar()[1])
 if len(week_number)<2:
     week_number= '0'+week_number
     pass
 tmp_parth = 'C:\\Users\\keshe\\Documents\\MAS\\Excel sheet ganerator\\Autonomation production base solustion list {}.xlsx'.format('Week - '+week_number) 
 
-sum_strip.to_excel(tmp_parth, index=False, sheet_name= 'Production_ASL')
+print(tmp_parth)
+sum_strip.to_excel(tmp_parth, index=False, sheet_name= f'Production_ASL {Loding_date}')
 print('final:-',time.time()-st)
 print('total :- ', time.time()-st1)
+
 # with pd.ExcelWriter(tmp_parth, engine='openpyxl', mode='a') as writer:
 #     sum_strip.to_excel(writer, sheet_name='Production Auto-SL', index= False)
 
