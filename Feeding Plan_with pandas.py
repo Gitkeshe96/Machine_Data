@@ -10,10 +10,10 @@ import datetime as td
 folder_path = "C:\\Users\\keshe\Documents\\MAS\\Excel sheet ganerator"
 excel_files = glob.glob(os.path.join(folder_path, 'Feeding Plan-week *.xlsx'))
 
-Week_Numbers = [os.path.splitext(os.path.basename(file))[0].split('Feeding Plan-week ')[1] for file in excel_files]
-Week_Number = max(Week_Numbers)
-technical_file = os.path.join(folder_path, f'Feeding Plan-week {Week_Number}.xlsx')
-
+Week_Nuermbs = [os.path.splitext(os.path.basename(file))[0].split('Feeding Plan-week ')[1] for file in excel_files]
+F_Week_Number = max(Week_Nuermbs)
+technical_file = os.path.join(folder_path, f'Feeding Plan-week {F_Week_Number}.xlsx')
+print(Week_Nuermbs)
 # ```````````END Feeding Plan File parth```````
 
 
@@ -40,14 +40,14 @@ file_name_Autonomation = Autonomation_file.split ('\\')
 
 # ``````````````End New Autonomation solution data base ``````````
 
-# ``````````````START New Autonomation solution data base ``````````
+# ``````````````START Autonomation production base solustion list ``````````
 tmp_parth = 'C:\\Users\\keshe\\Documents\\MAS\\Excel sheet ganerator\\tmp_V1.xlsx' 
 excel_files = glob.glob(os.path.join(folder_path, 'Autonomation production base solustion list Week - *.xlsx'))
 Week_Numbers = sorted([os.path.splitext(os.path.basename(file))[0].split('Autonomation production base solustion list Week - ')[1] for file in excel_files])
 Week_Number = max(Week_Numbers)
 production_ASL = os.path.join(folder_path, f'Autonomation production base solustion list Week - {Week_Number}.xlsx')
-
-# ``````````````End New Autonomation solution data base ``````````
+print(production_ASL)
+# ``````````````End Autonomation production base solustion list ``````````
 
 # tmp_parth_tc = 'C:\\Users\\keshe\\Documents\\MAS\\Excel sheet ganerator\\tmp.xlsx'
 
@@ -95,7 +95,7 @@ df_1.drop(['Unick_ID', 'Style-Module'], axis=1,inplace=True) #Remove 'Unick_ID',
 
 
 
-sheet_name = 'Feeding_ASC'
+sheet_name = f'Feeding_ASC-{F_Week_Number}'
 # Create a Pandas Excel writer using the existing file
 with pd.ExcelWriter(production_ASL, mode='a') as writer:
     # Check if the sheet name already exists in the file
